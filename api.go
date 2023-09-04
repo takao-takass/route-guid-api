@@ -45,5 +45,5 @@ func main() {
 
 	routes.UserRoute(r, db)
 
-	r.Run()
+	r.Run(":8000")
 }
