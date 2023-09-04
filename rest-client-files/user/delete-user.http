@@ -1,0 +1,6 @@
+PUT http://localhost:8080/users/30001
+content-type: application/json
+
+{
+    "name" : "炭"
+}
