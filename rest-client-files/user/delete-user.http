@@ -1,6 +1,6 @@
-PUT http://localhost:8000/users/30001
+DELETE http://localhost:8000/users/60001
 content-type: application/json
 
 {
-    "name" : "炭"
+
 }

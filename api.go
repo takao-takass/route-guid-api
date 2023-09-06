@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
 
 	"route-guid-api/configurations"
 	"route-guid-api/routes"
@@ -35,7 +36,15 @@ func main() {
 		ServerName: config.DatabaseServerName,
 	})
 
-	db, err := sql.Open("mysql", config.DatabaseConnectionString)
+	/*
+		db, err := sql.Open("mysql", config.DatabaseConnectionString)
+		if err != nil {
+			panic(err)
+		}
+		defer db.Close()
+	*/
+
+	db, err := gorm.Open("mysql", config.DatabaseConnectionString)
 	if err != nil {
 		panic(err)
 	}

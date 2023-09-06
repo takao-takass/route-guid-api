@@ -1,14 +1,13 @@
 package routes
 
 import (
-	"database/sql"
-
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 
 	userLogics "route-guid-api/logics/user"
 )
 
-func UserRoute(r *gin.Engine, db *sql.DB) {
+func UserRoute(r *gin.Engine, db *gorm.DB) {
 	// hello world
 	r.GET("/", userLogics.HelloWorld)
 

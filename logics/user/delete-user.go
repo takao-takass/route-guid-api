@@ -1,18 +1,18 @@
 package logics
 
 import (
-	"database/sql"
 	"net/http"
+	"route-guid-api/databases"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
 )
 
-func DeleteUser(c *gin.Context, db *sql.DB) {
+func DeleteUser(c *gin.Context, db *gorm.DB) {
 	id := c.Param("id")
 
-	_, err := db.Exec("DELETE FROM users WHERE id = ?", id)
-	if err != nil {
+	if err := db.Where("id = ?", id).Delete(&databases.User{}).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}

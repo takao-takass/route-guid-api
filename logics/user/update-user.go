@@ -1,15 +1,15 @@
 package logics
 
 import (
-	"database/sql"
 	"net/http"
 	"route-guid-api/databases"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
 )
 
-func UpdateUser(c *gin.Context, db *sql.DB) {
+func UpdateUser(c *gin.Context, db *gorm.DB) {
 	id := c.Param("id")
 
 	var user databases.User
@@ -18,8 +18,7 @@ func UpdateUser(c *gin.Context, db *sql.DB) {
 		return
 	}
 
-	_, err := db.Exec("UPDATE users SET name = ? WHERE id = ?", user.Name, id)
-	if err != nil {
+	if err := db.Model(&user).Where("id = ?", id).Update("name", user.Name).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
