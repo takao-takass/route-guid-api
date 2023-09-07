@@ -1,0 +1,3 @@
+GET http://localhost:8000/routes/partitions/30002/paths
+content-type: application/json
+token: 5ba92864-636a-4a24-8aba-46d18f049a9d

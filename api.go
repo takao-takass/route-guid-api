@@ -36,14 +36,6 @@ func main() {
 		ServerName: config.DatabaseServerName,
 	})
 
-	/*
-		db, err := sql.Open("mysql", config.DatabaseConnectionString)
-		if err != nil {
-			panic(err)
-		}
-		defer db.Close()
-	*/
-
 	db, err := gorm.Open("mysql", config.DatabaseConnectionString)
 	if err != nil {
 		panic(err)
@@ -53,6 +45,7 @@ func main() {
 	r := gin.Default()
 
 	routes.UserRoute(r, db)
+	routes.RouteRoute(r, db)
 
 	r.Run(":8000")
 }
