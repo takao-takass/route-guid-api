@@ -33,8 +33,8 @@ func GetRoutePaths(c *gin.Context, db *gorm.DB) {
 
 	var routePath []databases.RoutePath
 
-	// Get all path for a route. and order by sequence.
-	if err := db.Where("route_partition_id = ?", partitionId).Order("order").Find(&routePath).Error; err != nil {
+	// Get all path for a route. and order by clock and is_train.
+	if err := db.Where("route_partition_id = ?", partitionId).Order("clock").Order("is_train").Find(&routePath).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
