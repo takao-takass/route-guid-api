@@ -47,6 +47,7 @@ func main() {
 
 	corsConfig := cors.DefaultConfig()
 	corsConfig.AllowAllOrigins = true
+	corsConfig.AllowHeaders = append(corsConfig.AllowHeaders, "token")
 	router.Use(cors.New(corsConfig))
 
 	routes.UserRoute(router, db)

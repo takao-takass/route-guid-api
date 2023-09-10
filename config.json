@@ -1,4 +1,4 @@
 {
-    "database_server_name" : "",
-    "database_connection_string": ""
+    "database_server_name" : "gateway01.ap-northeast-1.prod.aws.tidbcloud.com",
+    "database_connection_string": "3megnT55Pqdd9nM.root:DSY7vV9XDowHyGq6@tcp(gateway01.ap-northeast-1.prod.aws.tidbcloud.com:4000)/test?parseTime=true&tls=tidb"
 }
