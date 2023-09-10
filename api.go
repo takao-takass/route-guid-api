@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
@@ -42,10 +43,14 @@ func main() {
 	}
 	defer db.Close()
 
-	r := gin.Default()
+	router := gin.Default()
 
-	routes.UserRoute(r, db)
-	routes.RouteRoute(r, db)
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowAllOrigins = true
+	router.Use(cors.New(corsConfig))
 
-	r.Run(":8000")
+	routes.UserRoute(router, db)
+	routes.RouteRoute(router, db)
+
+	router.Run(":8000")
 }
