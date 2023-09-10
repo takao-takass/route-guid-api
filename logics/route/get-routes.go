@@ -25,5 +25,7 @@ func GetRoutes(c *gin.Context, db *gorm.DB) {
 		return
 	}
 
+	//c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+
 	c.JSON(http.StatusOK, route)
 }
